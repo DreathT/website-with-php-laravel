@@ -14,20 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/laravel', function () {
     return view('welcome');
 });
 
+// Front-End Routes
+
 Route::get('/index', [websiteController::class,'index']) -> name('index');
-
 Route::get('/about', [websiteController::class,'about']) -> name('about');
-
 Route::get('/event-details', [websiteController::class,'eventDetails']) -> name('eventDetails');
-
 Route::get('/rent-venue', [websiteController::class,'rentVenue']) -> name('rentVenue');
-
 Route::get('/shows-events', [websiteController::class,'showsEvents']) -> name('showsEvents');
-
 Route::get('/ticket-details', [websiteController::class,'ticketDetails']) -> name('ticketDetails');
-
 Route::get('/tickets', [websiteController::class,'tickets']) -> name('tickets');
+
+
+// Admin Panel Routes
+
+route::get('/')
