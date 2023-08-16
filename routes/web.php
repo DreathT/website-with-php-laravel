@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\AdminPanelController;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +31,11 @@ Route::get('/ticket-details', [websiteController::class,'ticketDetails']) -> nam
 Route::get('/tickets', [websiteController::class,'tickets']) -> name('tickets');
 
 
-// Admin Panel Routes
+// login Panel Routes / auth routes
 
-route::get('/')
+route::get('/login', function () {
+    return view('auth.login');
+});
+
+route::post('/home', [loginController::class,'show']) -> name('loginProcess');
+
