@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\admin\AdminPanelController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\SignupController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +22,8 @@ Route::get('/laravel', function () {
 
 // Front-End Routes
 
-Route::get('/index', [websiteController::class,'index']) -> name('index');
+Route::get('/home', [websiteController::class,'index']) -> name('index');
+//Route::get('/index','WebsiteController@index') -> name('index');
 Route::get('/about', [websiteController::class,'about']) -> name('about');
 Route::get('/event-details', [websiteController::class,'eventDetails']) -> name('eventDetails');
 Route::get('/rent-venue', [websiteController::class,'rentVenue']) -> name('rentVenue');
@@ -31,11 +32,11 @@ Route::get('/ticket-details', [websiteController::class,'ticketDetails']) -> nam
 Route::get('/tickets', [websiteController::class,'tickets']) -> name('tickets');
 
 
-// login Panel Routes / auth routes
+// Auth Routes
 
-route::get('/login', function () {
-    return view('auth.login');
-});
+route::get('/login', function () {return view('auth.login');}) -> name('login');
+route::post('/home', [loginController::class,'authenticate']) -> name('home');
 
-route::post('/home', [loginController::class,'show']) -> name('loginProcess');
+route::get('/signup', [signupController::class,'show']) -> name('signupShow');
+route::post('/signup', [signupController::class,'create']) -> name('signupCreate');
 
