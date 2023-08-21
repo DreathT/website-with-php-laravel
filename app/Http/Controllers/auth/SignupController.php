@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Validator;
 class SignupController extends Controller
 {
 
-//    public function show() {
-//
-//        return view('auth.signup');
-//
-//    }
+    public function show() {
+
+        return view('auth.signup');
+
+    }
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
@@ -25,17 +25,25 @@ class SignupController extends Controller
     protected function create(Request $request)
     {
 
-        Validator::make((array)$request, [
+        $validator = Validator::make(request() -> all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
-        return User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
+        if ($validator->fails()) {
+            return redirect('/signup')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+            User::create([
+            'name' => request() -> input('name'),
+            'email' => request() -> input('email'),
             'password' => Hash::make($request['password']),
         ]);
+
+            return redirect($this->redirectTo);
     }
 
 

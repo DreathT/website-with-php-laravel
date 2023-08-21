@@ -4,12 +4,15 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebsiteController;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
+    protected $redirectTo = RouteServiceProvider::HOME;
     function show(Request $request) {
 
         /*
@@ -36,7 +39,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('index');
+            return redirect($this->redirectTo);
         }
 
         return back()->withErrors([

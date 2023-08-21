@@ -40,7 +40,6 @@
                 <span class="login100-form-title p-b-48">
 						<i class="zmdi zmdi-font"></i>
 					</span>
-
                 <div class="wrap-input100 validate-input" data-validate="name">
                     <input class="input100" type="text" name="name">
                     <span class="focus-input100" data-placeholder="name"></span>

@@ -1,4 +1,5 @@
 @extends('layouts.website')
+@section('title', 'Home')
 @section('content')
 
 <!-- ***** Main Banner Area Start ***** -->
